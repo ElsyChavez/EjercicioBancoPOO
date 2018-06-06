@@ -10,5 +10,20 @@ package bancopoo;
  * @author kevit
  */
 public class Transaccion {
+    private int[] tiempo;
+    
+    public Transaccion() {
+    }
+    public Transaccion(int[] tiempo) {
+        this.tiempo = tiempo;
+    }
+    
+    public int[]  getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int[] Tiempo) {
+        this.tiempo = Tiempo;
+    }
     
 }

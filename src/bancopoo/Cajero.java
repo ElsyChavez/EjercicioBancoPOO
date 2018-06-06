@@ -13,16 +13,17 @@ public class Cajero extends Thread{
     private String nombre;
 
 	private Cliente cliente;
-
+        private Transaccion transaccion;
 	private long initialTime;
 
 
 	public Cajero() {
 	}
 
-	public Cajero(String nombre, Cliente cliente, long initialTime) {
+	public Cajero(String nombre, Cliente cliente,Transaccion transaccion, long initialTime) {
 		this.nombre = nombre;
 		this.cliente = cliente;
+                this.transaccion = transaccion;
 		this.initialTime = initialTime;
 	}
 
@@ -50,6 +51,15 @@ public class Cajero extends Thread{
 		this.cliente = cliente;
 	}
 
+        public Transaccion getTransaccion() {
+            return transaccion;
+        }
+
+        public void setTransaccion(Transaccion transaccion) {
+            this.transaccion = transaccion;
+        }
+        
+        
 	@Override
 	public void run() {
 
@@ -58,10 +68,10 @@ public class Cajero extends Thread{
 					+ (System.currentTimeMillis() - this.initialTime) / 1000 
 					+ "seg");
 
-		for (int i = 0; i < this.cliente.getCarroCompra().length; i++) {
+		for (int i = 0; i < this.transaccion.getTiempo().length; i++) {
 			// Se procesa el pedido en X segundos
-			this.esperarXsegundos(cliente.getCarroCompra()[i]);
-			System.out.println("Procesado el producto " + (i + 1) 
+			this.esperarXsegundos(transaccion.getTiempo()[i]);
+			System.out.println("Procesado la transaccion " + (i + 1) 
 						+ " del cliente " + this.cliente.getNombre() + "->Tiempo: " 
 						+ (System.currentTimeMillis() - this.initialTime) / 1000 
 						+ "seg");
@@ -82,4 +92,4 @@ public class Cajero extends Thread{
 	}
 
 }
-}
+
